@@ -13,9 +13,9 @@ jobs:
       - name: Checkout del repositorio
         uses: actions/checkout@v3
 
-      - name: Enviar notificación a ntfy
+      - name: Enviar notificación a ntfy.sh
         run: |
-          curl -H "Title: Notificación de GitHub" \
+          curl -H "Title: Push en main por ${{ github.actor }}" \
                -H "Priority: high" \
-               -d "Se ha subido código a la rama main del repositorio." \
+               -d "El usuario ${{ github.actor }} ha subido código a la rama main del repositorio." \
                https://ntfy.sh/devops-itla
