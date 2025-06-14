@@ -1,4 +1,4 @@
-name: Notificar a ntfy.sh
+name: Notificar push a main
 
 on:
   push:
@@ -8,7 +8,14 @@ on:
 jobs:
   notify:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Enviar notificación a ntfy.sh
+      - name: Checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: Enviar notificación a ntfy
         run: |
-          curl -d "✅ Se ha hecho push a main en el repo ${{ github.repository }} 🚀" ntfy.sh/devops-itla
+          curl -H "Title: Notificación de GitHub" \
+               -H "Priority: high" \
+               -d "Se ha subido código a la rama main del repositorio." \
+               https://ntfy.sh/devops-itla
